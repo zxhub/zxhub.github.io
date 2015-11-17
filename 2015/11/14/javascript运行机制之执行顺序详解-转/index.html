@@ -36,7 +36,7 @@
 
 
 
-  <meta name="keywords" content="CSS,position," />
+  <meta name="keywords" content="javascript," />
 
 
 
@@ -45,16 +45,19 @@
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="CSS position 属性值：absolute：生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位。元素的位置通过 “left”, “top”, “right” 以及 “bottom” 属性进行规定。脱离DOM流。relative：生成相对定位的元素，相对于其正常位置进行定位。因此，”left:20” 会向元素的 LEFT 位置添加 20 像素。不支持堆叠。“Z-inde">
+<meta name="description" content="JavaScript是一种描述型脚本语言，它不同于java或C#等编译性语言,它不需要进行编译成中间语言,而是由浏览器进行动态地解析与执行。如果你不能理解javaScript语言的运行机制，或者简单地说，你不能掌握javascript的执行顺序，那你就犹如伯乐驾驭不了千里马，让千里马脱缰而出，四处乱窜。
+那么JavaScript是怎么来进行解析的吗？它的执行顺序又是如何的呢？在了解这些之前，我们先">
 <meta property="og:type" content="article">
-<meta property="og:title" content="关于CSS中position属性的总结">
-<meta property="og:url" content="http://yoursite.com/2015/11/11/关于CSS中position属性的总结/index.html">
+<meta property="og:title" content="javascript运行机制之执行顺序详解(转)">
+<meta property="og:url" content="http://yoursite.com/2015/11/14/javascript运行机制之执行顺序详解-转/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="CSS position 属性值：absolute：生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位。元素的位置通过 “left”, “top”, “right” 以及 “bottom” 属性进行规定。脱离DOM流。relative：生成相对定位的元素，相对于其正常位置进行定位。因此，”left:20” 会向元素的 LEFT 位置添加 20 像素。不支持堆叠。“Z-inde">
-<meta property="og:updated_time" content="2015-11-11T15:04:26.588Z">
+<meta property="og:description" content="JavaScript是一种描述型脚本语言，它不同于java或C#等编译性语言,它不需要进行编译成中间语言,而是由浏览器进行动态地解析与执行。如果你不能理解javaScript语言的运行机制，或者简单地说，你不能掌握javascript的执行顺序，那你就犹如伯乐驾驭不了千里马，让千里马脱缰而出，四处乱窜。
+那么JavaScript是怎么来进行解析的吗？它的执行顺序又是如何的呢？在了解这些之前，我们先">
+<meta property="og:updated_time" content="2015-11-17T15:31:38.501Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于CSS中position属性的总结">
-<meta name="twitter:description" content="CSS position 属性值：absolute：生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位。元素的位置通过 “left”, “top”, “right” 以及 “bottom” 属性进行规定。脱离DOM流。relative：生成相对定位的元素，相对于其正常位置进行定位。因此，”left:20” 会向元素的 LEFT 位置添加 20 像素。不支持堆叠。“Z-inde">
+<meta name="twitter:title" content="javascript运行机制之执行顺序详解(转)">
+<meta name="twitter:description" content="JavaScript是一种描述型脚本语言，它不同于java或C#等编译性语言,它不需要进行编译成中间语言,而是由浏览器进行动态地解析与执行。如果你不能理解javaScript语言的运行机制，或者简单地说，你不能掌握javascript的执行顺序，那你就犹如伯乐驾驭不了千里马，让千里马脱缰而出，四处乱窜。
+那么JavaScript是怎么来进行解析的吗？它的执行顺序又是如何的呢？在了解这些之前，我们先">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -66,7 +69,7 @@
 
 
 
-  <title> 关于CSS中position属性的总结 | Hexo </title>
+  <title> javascript运行机制之执行顺序详解(转) | Hexo </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -211,7 +214,7 @@
             
             
               
-                关于CSS中position属性的总结
+                javascript运行机制之执行顺序详解(转)
               
             
           </h1>
@@ -220,8 +223,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-11-11T21:45:33+08:00" content="2015-11-11">
-              2015-11-11
+            <time itemprop="dateCreated" datetime="2015-11-14T17:26:04+08:00" content="2015-11-14">
+              2015-11-14
             </time>
           </span>
 
@@ -244,17 +247,95 @@
       
 
       
-        <span itemprop="articleBody"><p><big>CSS position 属性值：</big><br><b>absolute：</b>生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位。元素的位置通过 “left”, “top”, “right” 以及 “bottom” 属性进行规定。脱离DOM流。<br><b>relative：</b>生成相对定位的元素，相对于其正常位置进行定位。因此，”left:20” 会向元素的 LEFT 位置添加 20 像素。不支持堆叠。“Z-index失效”<br><b>fixed：</b>生成绝对定位的元素，相对于浏览器窗口进行定位。脱离DOM流。<br><b>static：</b>默认值。没有定位，元素出现在正常的流中（忽略 top, bottom, left, right 或者 z-index 声明）。元素的位置通过 “left”, “top”, “right” 以及 “bottom” 属性进行规定。<br><b>inherit：</b>规定应该从父元素继承 position 属性的值。</p>
-<p>当你定义的CSS中有position属性值为absolute、relative或fixed时，用z-index此取值方可生效。此属性参数值越大，则该标签被层叠在最上面。<br><a id="more"></a><br><b>fixed 定位方式</b><br>fixed是一种特殊的absolute，fixed总是以body为定位对象的，按照浏览器的窗口进行定位。</p>
-<p>如果用 position来布局页面，父级元素的position 属性必须为relative，而定位于父级内部某个位置的元素，最好用absolute，因为它不受父级元素的padding 的属性影响，当然你也可以用 position，不过到时候计算的时候不要忘记 padding 的值。”</p>
-<p>任何元素的默认position 的属性值均是static,静态。今天主要讲relative（相对）以及absolute（绝对）。</p>
-<p><b>absolute 定位方式</b><br>意思是：他的意思是绝对定位，他默认参照浏览器的左上角，配合TOP、RIGHT、BOTTOM、LEFT(下面简称TRBL)进行定位，有以下属性：<br>1)如果没有TRBL，以父级的左上角，在没有父级的时候，他是参照浏览器左上角,如果在没有父级元素的情况下，存在文本，则以它前面的最后一个文字的右上角为原点进行定位但是不断开文字，覆盖于上方。<br>2)如果设定TRBL，并且父级没有设定position 属性，那么当前的absolute 则以浏览器左上角为原始点进行定位，位置将由TRBL 决定。<br>3)如果设定TRBL，并且父级设定position 属性(无论是absolute 还是relative)，则以父级的左上角为原点进行定位，位置由TRBL决定。即使父级有Padding属性，对其也不起作用，说简单点就是：它只坚持一点，就以父级左上角为原点进行定位，父级的padding对其根本没有影响。</p>
-<p>以上三点可以总结出，若想把一个定位属性为absolute 的元素定位于其父级元素内，只有满足两个条件，<br>第一：设定TRBL<br>第二：父级设定Position 属性<br>上面的这个总结非常重要，可以保证你在用absolue 布局页面的时候，不会错位，并且随着浏览器的大小或者显示器分辨率的大小，而不发生改变。只要有一点不满足，元素就会以浏览器左上角为原点，这就是初学者容易犯错的一点，已经定位好的板块，当浏览器的大小改变，父级元素会随之改变，但是设定Position 属性为absolute 的板块和父级元素的位置发生改变，错位了，这就是因为此时元素以浏览器的右上角为原点的原因。</p>
-<p><b>relative 定位方式</b><br>意思是相对定位，他是默认参照父级的原始点为原始点，无父级则以文本流的顺序在上一个元素的底部为原始点，配合TRBL 进行定位，当父级内有padding 等CSS 属性时，当前级的原始点则参照父级内容区的原始点进行定位，有以下属性：<br>1)如果没有TRBL，以父级的左上角，在没有父级的时候，他是参照浏览器左上角(到这里和absolute 第一条一样)，如果在没有父级元素的情况下，存在文本，则以文本的底部为原始点进行定位并将文字断开(和absolut 不同)。<br>2)如果设定TRBL，并且父级没有设定position 属性，仍旧以父级的左上角为原点进行定位(和absolut 不同)<br>3)如果设定TRBL，并且父级设定position 属性(无论是absolute 还是relative)，则以父级的左上角为原点进行定位，位置由TRBL 决定(前半段和absolut 一样)。如果父级有Padding 属性，那么就以内容区域的左上角为原点，进行定位(后半段和absolut 不同)。</p>
-<p>以上三点可以总结出，无论父级存在不存在，无论有没有TRBL，均是以父级的左上角进行定位，但是父级的Padding 属性会对其影响。<br>综合上面对relative 的叙述，我们就可以将position 属性为relative 的DIV 视成可以用TRBL 进行定位的的普通DIV，或者说只要将我们平时布局页面的div 的CSS 属性中加上position:relative 后，就不只是用float 布局页面了，还可以用TRBL 进行布局页面了，或者说加上position:relative 的DIV 也可以像普通的DIV 进行布局页面了，只不过还可以用TRBL进行布局页面。但是position 属性为absolute 不可以用来布局页面，因为如果用来布局的话，所有的DIV 都相对于浏览器的左上角定位了，所以只能用于将某个元素定位于属性为absolute 的元素的内部某个位置，这样我们就可以总结比较重要的结论既然属性为absolute 的元素用来定位某元素在父级中位置，就少不了TRBL，这时候根据一开始讲的absolute 的第三条，如果父级元素没有<br>position 属性那么absolute 元素就会脱离父级元素，但是如果是布局页面，父级元素position 的属性又不能为absolute，不然就会以浏览器左上角为原点了，所以父级元素的position 属性只能为relative！</p>
-<p>属性为relative 的元素可以用来布局页面，属性为absolute 的元素用来定位某元素在父级中的位置</p>
-<p><strong>总结：</strong>如果用position来布局页面，父级元素的position属性必须为relative，而定位于父级内部某个位置的元素，最好用absolute，因为它不受父级元素的padding的属性影响，当然你也可以用position，不过到时候计算的时候不要忘记padding的值。<br>但是定位(position)有一个缺点，不会自适应内部元素的高度，所以平时我们在布局页面的时候，如果某个或者某些模块高度永远不变，就可以用定位。<br>核心：“布局页面，Float为主 ，Position为辅！”</p>
-</span>
+        <span itemprop="articleBody"><p>JavaScript是一种描述型脚本语言，它不同于java或C#等编译性语言,它不需要进行编译成中间语言,而是由浏览器进行动态地解析与执行。如果你不能理解javaScript语言的运行机制，或者简单地说，你不能掌握javascript的执行顺序，那你就犹如伯乐驾驭不了千里马，让千里马脱缰而出，四处乱窜。</p>
+<p>那么JavaScript是怎么来进行解析的吗？它的执行顺序又是如何的呢？在了解这些之前，我们先来认识几个重要的术语：</p>
+<p>1、代码块<br>JavaScript中的代码块是指由&lt;script&lt;标签分割的代码段。例如：</p>
+<pre><code><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="actionscript">
+      alert(<span class="string">"这是代码块一"</span>);
+</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="actionscript">
+      alert(<span class="string">"这是代码块二"</span>);
+</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+</code></pre><p>JS是按照代码块来进行编译和执行的，代码块间相互独立，但变量和方法共享。什么意思呢? 举个例子，你就明白了：</p>
+<pre><code><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="actionscript">
+      alert(str);<span class="comment">//因为没有定义str，所以浏览器会出错，下面的不能运行</span>
+      alert(<span class="string">"我是代码块一"</span>);<span class="comment">//没有运行到这里</span>
+      <span class="keyword">var</span> test = <span class="string">"我是代码块一变量"</span>;
+</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="actionscript">
+      alert(<span class="string">"我是代码块二"</span>); <span class="comment">//这里有运行到</span>
+      alert(test); <span class="comment">//弹出"我是代码块一变量"</span>
+</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+</code></pre><a id="more"></a>
+<p>上面的代码中代码块一中运行报错，但不影响代码块二的执行，这就是代码块间的独立性，而代码块二中能调用到代码一中的变量，则是块间共享性。<br>2、声明式函数与赋值式函数<br>JS中的函数定义分为两种：声明式函数与赋值式函数。</p>
+<pre><code><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="actionscript">
+     <span class="function"><span class="keyword">function</span> <span class="title">Fn</span><span class="params">()</span></span>{ <span class="comment">//声明式函数</span>
+
+     }
+
+     <span class="keyword">var</span> Fn = <span class="function"><span class="keyword">function</span></span>{  <span class="comment">//赋值式函数</span>
+
+     }
+</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+</code></pre><p>声明式函数与赋值式函数的区别在于：在JS的预编译期，声明式函数将会先被提取出来，然后才按顺序执行js代码。<br>3、预编译期与执行期<br>事实上，JS的解析过程分为两个阶段：预编译期(预处理)与执行期。</p>
+<p>预编译期JS会对本代码块中的所有声明的变量和函数进行处理（类似与C语言的编译），但需要注意的是此时处理函数的只是声明式函数，而且变量也只是进行了声明但未进行初始化以及赋值。</p>
+<pre><code><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="actionscript">
+     Fn();  <span class="comment">//执行结果："执行了函数2",同名函数后者会覆盖前者</span>
+     <span class="function"><span class="keyword">function</span> <span class="title">Fn</span><span class="params">()</span></span>{ <span class="comment">//函数1</span>
+        alert(<span class="string">"执行了函数1"</span>);
+     }
+
+     <span class="function"><span class="keyword">function</span> <span class="title">Fn</span><span class="params">()</span></span>{  <span class="comment">//函数2</span>
+        alert(<span class="string">"执行了函数2"</span>);
+     }
+</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="actionscript">
+      Fn();  <span class="comment">//执行结果："执行了声明式函数",在预编译期声明函数及被处理了，所以即使Fn()调用函数放在声明函数前也能执行。</span>
+      <span class="function"><span class="keyword">function</span> <span class="title">Fn</span><span class="params">()</span></span>{ <span class="comment">//声明式函数</span>
+         alert(<span class="string">"执行了声明式函数"</span>);
+      }
+
+      <span class="keyword">var</span> Fn = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{  <span class="comment">//赋值式函数</span>
+         alert(<span class="string">"执行了赋值式函数"</span>);
+      }
+</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+//代码块一
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="actionscript">
+      alert(str);<span class="comment">//浏览器报错,但并没有弹出信息窗</span>
+</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+//代码块二
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="actionscript">
+      alert(str); <span class="comment">//弹窗"undefined"</span>
+      <span class="keyword">var</span> str = <span class="string">"aaa"</span>;
+</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+</code></pre><p>//js在预处理期对变量进行了声明处理,但是并没有进行初始化与赋值，所以导致代码块二中的变量是unfiened的，而代码一中的变量是完全不存在的，所以浏览器报错。<br>理解了上面的几个术语，相信大家对JS的运行机制已经有了个大概的印象了，现在我们来看个例子：</p>
+<pre><code><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="actionscript">
+      Fn();  <span class="comment">//浏览器报错:"undefined"</span>
+</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="actionscript">
+      <span class="function"><span class="keyword">function</span> <span class="title">Fn</span><span class="params">()</span></span>{ <span class="comment">//函数1</span>
+          alert(<span class="string">"执行了函数1"</span>);
+      }
+</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+</code></pre><p>为什么运行上面的代码浏览器会报错呢？声明函数不是会在预处理期就会被处理了吗，怎么还会找不到Fn()函数呢？其实这是一个理解误点，我们上面说了JS引擎是按照代码块来顺序执行的，其实完整的说应该是按照代码块来进行预处理和执行的，也就是说预处理的只是执行到的代码块的声明函数和变量，而对于还未加载的代码块，是没法进行预处理的，这也是边编译边处理的核心所在。<br>现在，让我们来总结整理下：</p>
+<p>step 1. 读入第一个代码块。</p>
+<p>step 2. 做语法分析，有错则报语法错误（比如括号不匹配等），并跳转到step5。</p>
+<p>step 3. 对var变量和function定义做“预编译处理”（永远不会报错的，因为只解析正确的声明）。</p>
+<p>step 4. 执行代码段，有错则报错（比如变量未定义）。</p>
+<p>step 5. 如果还有下一个代码段，则读入下一个代码段，重复step2。</p>
+<p>step6. 结束。<br>而根据HTML文档流的执行顺序，需要在页面元素渲染前执行的js代码应该放在前面的<script>码块中，而需要在页面元素加载完后的js放在元素后面，body标签的onload事件是在最后执行的。</p>
+<pre><code><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="actionscript">
+    alert(<span class="string">"first"</span>);
+    <span class="function"><span class="keyword">function</span> <span class="title">Fn</span><span class="params">()</span></span>{
+        alert(<span class="string">"third"</span>);
+    }
+</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+
+
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="actionscript">
+    alert(<span class="string">"second"</span>);
+</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+</code></pre></script></p></span>
       
     </div>
 
@@ -262,9 +343,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/CSS/" rel="tag">#CSS</a>
-          
-            <a href="/tags/position/" rel="tag">#position</a>
+            <a href="/tags/javascript/" rel="tag">#javascript</a>
           
         </div>
       
@@ -273,17 +352,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/11/08/浏览器加载和渲染html的顺序/" rel="next" title="浏览器加载和渲染html的顺序(转载)">
-                <i class="fa fa-chevron-left"></i> 浏览器加载和渲染html的顺序(转载)
+              <a href="/2015/11/14/hello-world/" rel="next" title="Hexo指南">
+                <i class="fa fa-chevron-left"></i> Hexo指南
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/11/14/hello-world/" rel="prev" title="Hexo指南">
-                Hexo指南 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>

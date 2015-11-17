@@ -212,8 +212,8 @@
             
             
               
-                <a class="post-title-link" href="/2015/11/11/hello-world/" itemprop="url">
-                  Hello World
+                <a class="post-title-link" href="/2015/11/14/javascript运行机制之执行顺序详解-转/" itemprop="url">
+                  javascript运行机制之执行顺序详解(转)
                 </a>
               
             
@@ -223,8 +223,103 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-11-11T23:11:42+08:00" content="2015-11-11">
-              2015-11-11
+            <time itemprop="dateCreated" datetime="2015-11-14T17:26:04+08:00" content="2015-11-14">
+              2015-11-14
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>JavaScript是一种描述型脚本语言，它不同于java或C#等编译性语言,它不需要进行编译成中间语言,而是由浏览器进行动态地解析与执行。如果你不能理解javaScript语言的运行机制，或者简单地说，你不能掌握javascript的执行顺序，那你就犹如伯乐驾驭不了千里马，让千里马脱缰而出，四处乱窜。</p>
+<p>那么JavaScript是怎么来进行解析的吗？它的执行顺序又是如何的呢？在了解这些之前，我们先来认识几个重要的术语：</p>
+<p>1、代码块<br>JavaScript中的代码块是指由&lt;script&lt;标签分割的代码段。例如：</p>
+<pre><code><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="actionscript">
+      alert(<span class="string">"这是代码块一"</span>);
+</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="actionscript">
+      alert(<span class="string">"这是代码块二"</span>);
+</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+</code></pre><p>JS是按照代码块来进行编译和执行的，代码块间相互独立，但变量和方法共享。什么意思呢? 举个例子，你就明白了：</p>
+<pre><code><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="actionscript">
+      alert(str);<span class="comment">//因为没有定义str，所以浏览器会出错，下面的不能运行</span>
+      alert(<span class="string">"我是代码块一"</span>);<span class="comment">//没有运行到这里</span>
+      <span class="keyword">var</span> test = <span class="string">"我是代码块一变量"</span>;
+</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="actionscript">
+      alert(<span class="string">"我是代码块二"</span>); <span class="comment">//这里有运行到</span>
+      alert(test); <span class="comment">//弹出"我是代码块一变量"</span>
+</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+</code></pre>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/11/14/javascript运行机制之执行顺序详解-转/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2015/11/14/hello-world/" itemprop="url">
+                  Hexo指南
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-11-14T17:25:02+08:00" content="2015-11-14">
+              2015-11-14
             </time>
           </span>
 
@@ -252,7 +347,7 @@
 <h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
 <p>More info: <a href="http://hexo.io/docs/writing.html">Writing</a><br>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/11/11/hello-world/#more" rel="contents">
+            <a class="btn" href="/2015/11/14/hello-world/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -481,10 +576,15 @@
         
           <span itemprop="articleBody">
             
-              <p>1.安装 npm install hexo-deployer-git –save<br>2.将deploy 的 type由github改为git</p>
+            1.安装 npm install hexo-deployer-git –save2.将deploy 的 type由github改为git
 
             
           </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/21/hexo-ERROR-Deployer-not-found-github/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -541,7 +641,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">5</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -555,7 +655,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">5</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
